@@ -1,11 +1,9 @@
-td .btn {
+td {
 	width: 128px;
 	height: 128px;
 }
 .flex-container {
 	display: flex;
-	align-items: center;
 	justify-content: center;
 	text-align: center;
-	margin: auto;
 }

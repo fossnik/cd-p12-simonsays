@@ -5,6 +5,7 @@
 	<title>Project #12 - Advanced FCC - Simon Says</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 
 <body class="jumbotron flex-container">
@@ -12,11 +13,11 @@
 		<div class="panel-heading text-center"><h1 id="simonsays">Simon Says</h1></div>
 		<table class="table table-bordered">
 			<tr>
-				<td><button id="1" type="button" class="btn" onclick="handlers.tap(1)"></button></td>
-				<td><button id="2" type="button" class="btn" onclick="handlers.tap(2)"></button></td>
+				<td id="1" type="button" class="btn" onclick="handlers.tap(1)"></td>
+				<td id="2" type="button" class="btn" onclick="handlers.tap(2)"></td>
 			</tr><tr>
-				<td><button id="3" type="button" class="btn" onclick="handlers.tap(3)"></button></td>
-				<td><button id="4" type="button" class="btn" onclick="handlers.tap(4)"></button></td>
+				<td id="3" type="button" class="btn" onclick="handlers.tap(3)"></td>
+				<td id="4" type="button" class="btn" onclick="handlers.tap(4)"></td>
 			</tr>
 		</table>
 		<div class="panel-footer">
