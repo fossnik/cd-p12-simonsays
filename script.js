@@ -1,9 +1,13 @@
+document.addEventListener("DOMContentLoaded", function(event) {
+  // simonSays.illumeBox(['a','d','b','c']);
+});
+
 var simonSays = {
 	sequence: [],
 	boxColors:
 	{
-		0: { 1: '#003300', 2: '#660000', 3: '#000066', 4: '#663300'},
-		1: { 1: '#00cc00', 2: '#cc0000', 3: '#0040ff', 4: '#cc9900'}
+		0: { 'a': '#003300', 'b': '#660000', 'c': '#663300', 'd': '#000066'},
+		1: { 'b': '#00cc00', 'b': '#cc0000', 'c': '#cc9900', 'd': '#0040ff'}
 	},
 	growSequence: function() {
 		this.sequence.push(Math.floor(Math.random()*4));

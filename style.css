@@ -2,6 +2,10 @@ td {
 	width: 128px;
 	height: 128px;
 }
+td#a {background-color: #003300;}
+td#b {background-color: #660000;}
+td#c {background-color: #663300;}
+td#d {background-color: #000066;}
 .flex-container {
 	display: flex;
 	justify-content: center;
