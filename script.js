@@ -19,10 +19,10 @@ var simonSays = {
 	illumeBox: function(box, timeout) {
 		setTimeout(function(){
 			document.getElementById(box).style.backgroundColor = simonSays.boxColors[1][box];
-		}, timeout * 1000);
+		}, timeout * 800);
 		setTimeout(function(){
 			document.getElementById(box).style.backgroundColor = simonSays.boxColors[0][box];
-		}, timeout * 1000);
+		}, timeout * 800 + 300);
 	}
 };
 
