@@ -1,5 +1,5 @@
 var simonSays = {
-	sequence: [1,2,3,4],
+	sequence: [],
 	boxColors:
 	{
 		0: { 1: '#003300', 2: '#660000', 3: '#000066', 4: '#663300'},
@@ -9,23 +9,23 @@ var simonSays = {
 		this.sequence.push(Math.floor(Math.random()*4));
 	},
 	playSequence: function() {
-		// uses the index to set the timeout
-		this.sequence.forEach(function(box, timeout){
-			simonSays.illumeBox(box, timeout);
-		});
+		simonSays.illumeBox(this.sequence);
 	},
-	illumeBox: function(box, timeout) {
-		setTimeout(function(){
-			document.getElementById(box).style.backgroundColor = simonSays.boxColors[1][box];
-		}, timeout * 800);
-		setTimeout(function(){
-			document.getElementById(box).style.backgroundColor = simonSays.boxColors[0][box];
-		}, timeout * 800 + 300);
+	illumeBox: function(boxes) {
+		// uses the index to set the timeout
+		boxes.forEach(function(box, timeout) {
+			setTimeout(function(){
+				document.getElementById(box).style.backgroundColor = simonSays.boxColors[1][box];
+			}, timeout * 800);
+			setTimeout(function(){
+				document.getElementById(box).style.backgroundColor = simonSays.boxColors[0][box];
+			}, timeout * 800 + 300);
+		});
 	}
 };
 
 var handlers = {
 	tap: function(box) {
-		simonSays.playSequence();
+		simonSays.illumeBox(box);
 	}
 };
