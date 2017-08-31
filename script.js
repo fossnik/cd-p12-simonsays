@@ -1,8 +1,9 @@
 document.addEventListener("DOMContentLoaded", function(event) {
-	simonSays.illumeBox(['a','d','b','c'])
+	simonSays.illumeBox(['a','d','b','c']);
   setTimeout(function(){
 		simonSays.growSequence();
 		simonSays.playSequence();
+	},4*800);
 });
 
 var simonSays = {
@@ -13,7 +14,7 @@ var simonSays = {
 		1: { 'a': '#00cc00', 'b': '#cc0000', 'c': '#cc9900', 'd': '#0040ff'}
 	},
 	growSequence: function() {
-		this.sequence.push(["a","b","c","d"][Math.floor(Math.random()*4)]);
+		this.sequence.push(['a','b','c','d'][Math.floor(Math.random()*4)]);
 	},
 	playSequence: function() {
 		simonSays.illumeBox(this.sequence);
