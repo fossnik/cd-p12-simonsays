@@ -20,7 +20,9 @@ var simonSays = {
 		setTimeout(function(){
 			document.getElementById(box).style.backgroundColor = simonSays.boxColors[1][box];
 		}, timeout * 1000);
-		document.getElementById(box).style.backgroundColor = simonSays.boxColors[0][box];
+		setTimeout(function(){
+			document.getElementById(box).style.backgroundColor = simonSays.boxColors[0][box];
+		}, timeout * 1000);
 	}
 };
 
