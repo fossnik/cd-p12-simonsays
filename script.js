@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function(event) {
-	simonSays.illumeBox(['a','d','b','c']);
+	// simonSays.illumeBox(['a','d','b','c']);
   setTimeout(function(){
 		simonSays.growSequence();
 		simonSays.playSequence();
