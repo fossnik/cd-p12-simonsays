@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(event) {
 	// simonSays.illumeBox(['a','d','b','c']);
+	console.log("STARTING GAME");
   setTimeout(function(){
 		simonSays.growSequence();
 		simonSays.playSequence();
