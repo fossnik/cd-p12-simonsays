@@ -19,13 +19,20 @@ beep2.appendChild(src2);
 beep3.appendChild(src3);
 beep4.appendChild(src4);
 
+var globalStateData = {
+	depthInSequence : 1,
+	computerTurn : true
+};
+
 document.addEventListener("DOMContentLoaded", function(event) {
 	simonSays.growSequence();
 	simonSays.playSequence(simonSays.sequence);
+	globalStateData.computerTurn = false;
 });
 
 var handlers = {
 	tap: function(box) {
+		console.log(globalStateData.depthInSequence++);
 		simonSays.illumeBox(box);
 	}
 };
@@ -39,6 +46,7 @@ var simonSays = {
 	},
 	growSequence: function() {
 		this.sequence.push(['a','b','c','d'][Math.floor(Math.random()*4)]);
+		console.log(this.sequence)
 	},
 	playSequence: function() {
 		simonSays.illumeBox(this.sequence);
@@ -47,17 +55,17 @@ var simonSays = {
 		// uses the index to set the timeout
 		boxes.forEach(function(box, timeout) {
 			setTimeout(function(){
-				document.getElementById(box).style.backgroundColor = simonSays.boxColors[1][box];
 				switch(box) {
 					case 'a':
-						beep1.play(); break;
+					beep1.play(); break;
 					case 'b':
-						beep2.play(); break;
+					beep2.play(); break;
 					case 'c':
-						beep3.play();	break;
+					beep3.play();	break;
 					case 'd':
-						beep4.play();	break;
+					beep4.play();	break;
 				}
+				document.getElementById(box).style.backgroundColor = simonSays.boxColors[1][box];
 			}, timeout * 800);
 			setTimeout(function(){
 				document.getElementById(box).style.backgroundColor = simonSays.boxColors[0][box];
