@@ -1,4 +1,3 @@
-// beeps
 var beep1 = document.createElement('AUDIO');
 var src1 = document.createElement('SOURCE');
 src1.type= 'audio/mpeg';
@@ -21,13 +20,8 @@ src4.src= "audio/4.mp3";
 beep4.appendChild(src4);
 
 document.addEventListener("DOMContentLoaded", function(event) {
-	simonSays.sequence = ['a','d','b','c'];
-
-	simonSays.playSequence(simonSays.sequence)
-  // setTimeout(function(){
-	// 	simonSays.growSequence();
-	// 	simonSays.playSequence();
-	// },4*800);
+	simonSays.growSequence();
+	simonSays.playSequence(simonSays.sequence);
 });
 
 var simonSays = {
@@ -50,17 +44,17 @@ var simonSays = {
 				document.getElementById(box).style.backgroundColor = simonSays.boxColors[1][box];
 				switch(box) {
 					case 'a':
-					beep1.play();
-					break;
+						beep1.play();
+						break;
 					case 'b':
-					beep2.play();
-					break;
+						beep2.play();
+						break;
 					case 'c':
-					beep3.play();
-					break;
+						beep3.play();
+						break;
 					case 'd':
-					beep4.play();
-					break;
+						beep4.play();
+						break;
 				}
 			}, timeout * 800);
 			setTimeout(function(){
@@ -69,10 +63,6 @@ var simonSays = {
 		});
 	}
 };
-
-var audio = {
-
-}
 
 var handlers = {
 	tap: function(box) {
