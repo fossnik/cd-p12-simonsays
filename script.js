@@ -1,3 +1,4 @@
+// this adds all the beeping as elements injected into html
 var beep1 = document.createElement('AUDIO');
 var beep2 = document.createElement('AUDIO');
 var beep3 = document.createElement('AUDIO');
