@@ -20,20 +20,28 @@ beep3.appendChild(src3);
 beep4.appendChild(src4);
 
 var globalStateData = {
-	depthInSequence : 1,
+	depthInSequence : 0,
 	computerTurn : true
 };
 
 document.addEventListener("DOMContentLoaded", function(event) {
 	simonSays.growSequence();
 	simonSays.playSequence(simonSays.sequence);
-	globalStateData.computerTurn = false;
 });
 
 var handlers = {
 	tap: function(box) {
-		console.log(globalStateData.depthInSequence++);
 		simonSays.illumeBox(box);
+		// console.log(box.toString(),simonSays.sequence[globalStateData.depthInSequence]);
+		if (box.toString() === simonSays.sequence[globalStateData.depthInSequence]) {
+			console.log("MATCH!!!!");
+			simonSays.growSequence();
+			simonSays.playSequence(simonSays.sequence)
+			globalStateData.depthInSequence++;
+		} else {
+			console.log("FAIL!!!!!");
+			document.getElementsByTagName("body")[0].style.backgroundColor = "red";
+		}
 	}
 };
 
@@ -46,9 +54,9 @@ var simonSays = {
 	},
 	growSequence: function() {
 		this.sequence.push(['a','b','c','d'][Math.floor(Math.random()*4)]);
-		console.log(this.sequence)
 	},
 	playSequence: function() {
+		console.log(simonSays.sequence);
 		simonSays.illumeBox(this.sequence);
 	},
 	illumeBox: function(boxes) {
