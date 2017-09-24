@@ -38,6 +38,7 @@ var handlers = {
 				globalStateData.depthInSequence++;
 			} else {
 				console.log("FAIL!!!!!");
+				alert("You Lose");
 				document.getElementsByTagName("body")[0].style.backgroundColor = "red";
 			}
 		} else {
