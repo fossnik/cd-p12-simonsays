@@ -37,57 +37,53 @@ var simonSays = {
 		this.sequence.push(['a','b','c','d'][Math.floor(Math.random()*4)]);
 	},
 	playSequence: function() {
-		console.log(simonSays.sequence);
-		simonSays.illumeBox(this.sequence);
-	},
-	illumeBox: function(boxes) {
-		// uses the index to set the timeout
-		boxes.forEach(function(box, timeout) {
-			setTimeout(function(){
-				switch(box) {
-					case 'a':
-					beep1.play(); break;
-					case 'b':
-					beep2.play(); break;
-					case 'c':
-					beep3.play();	break;
-					case 'd':
-					beep4.play();	break;
-				}
-				document.getElementById(box).style.backgroundColor = simonSays.boxColors[1][box];
-			}, timeout * 800);
-			setTimeout(function(){
-				document.getElementById(box).style.backgroundColor = simonSays.boxColors[0][box];
-			}, timeout * 800 + 300);
+		this.sequence.forEach(function(box, timeout) {
+			// uses the index to set the timeout
+			simonSays.illumeBox(box, timeout);
 		});
+	},
+	illumeBox: function(box, timeout) {
+		setTimeout(function(){
+			switch(box) {
+				case 'a':
+				beep1.play(); break;
+				case 'b':
+				beep2.play(); break;
+				case 'c':
+				beep3.play();	break;
+				case 'd':
+				beep4.play();	break;
+			}
+			document.getElementById(box).style.backgroundColor = simonSays.boxColors[1][box];
+		}, timeout * 800);
+		setTimeout(function(){
+			document.getElementById(box).style.backgroundColor = simonSays.boxColors[0][box];
+		}, timeout * 800 + 300);
 	}
 };
 
 var handlers = {
 	tap: function(box) {
 		simonSays.illumeBox(box);
-		// console.log(box.toString(),simonSays.sequence[globalStateData.depthInSequence]);
-		if (tempSequence.length > 0){
+		globalStateData.tempSequence.push(box);
+		// if (tempSequence.length > 0){
 			if (box.toString() === simonSays.sequence[globalStateData.depthInSequence]) {
 				console.log("MATCH!!!!");
 				simonSays.growSequence();
-				simonSays.illumeBox()
+				simonSays.playSequence(simonSays.sequence);
 				globalStateData.depthInSequence++;
 			} else {
 				console.log("FAIL!!!!!");
-				alert("You Lose");
 				document.getElementsByTagName("body")[0].style.backgroundColor = "red";
+				alert("You Lose");
 			}
-		} else {
-			computerTurn = false;
-			tempSequence = simonSays.sequence;
-			simonSays.playSequence();
-		}
+		// } else {
+		// 	computerTurn = false;
+		// 	tempSequence = simonSays.sequence;
+		// 	simonSays.playSequence();
+		// }
 	}
 };
-/// THIS MUST OCCUR AT SOME POINT
-simonSays.playSequence(simonSays.sequence);
-
 
 document.addEventListener("DOMContentLoaded", function(event) {
 	simonSays.growSequence();
