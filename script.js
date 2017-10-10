@@ -1,4 +1,3 @@
-// this adds all the beeping as elements injected into html
 var beep1 = document.createElement('AUDIO');
 var beep2 = document.createElement('AUDIO');
 var beep3 = document.createElement('AUDIO');
@@ -57,31 +56,36 @@ var simonSays = {
 		}, timeout * 800 + 300);
 	},
 	testBox: function(box) {
-		console.log("stateData.depthInSequence: ", stateData.depthInSequence)
-		console.log("simonSays.sequence.length: ", simonSays.sequence.length)
-		console.log("simonSays.sequence[",stateData.depthInSequence,"]: ", simonSays.sequence[stateData.depthInSequence])
-		console.log("tapped box: ", box)
-
 		if (box === simonSays.sequence[stateData.depthInSequence]) {
 			stateData.depthInSequence++;
 		} else {
-			document.getElementsByTagName("body")[0].style.backgroundColor = "red";
-			console.log("You Lose\n\n\n");
-			// alert("You Lose");
+			alert("You Lose");
+			window.location.reload();
 		}
+	},
+	nextLevel: function() {
+		setTimeout(function(){
+			document.getElementById("successFooter").style.backgroundColor = "green";
+		}, 500);
+		setTimeout(function(){
+			document.getElementById("successFooter").style.backgroundColor = "white";
+		}, 1500);
+
+		setTimeout(function(){
+			simonSays.growSequence();
+		}, 2500);
+		stateData.depthInSequence = 0;
 	}
 };
 
 var handlers = {
 	tap: function(box) {
-		simonSays.illumeBox(box);
+		simonSays.illumeBox(box, 0);
 		if (stateData.depthInSequence < simonSays.sequence.length) {
 			simonSays.testBox(box);
 		}
 		if (stateData.depthInSequence >= simonSays.sequence.length) {
-			// human turn completed - proceed to next iteration.
-			stateData.depthInSequence = 0;
-			simonSays.growSequence();
+			simonSays.nextLevel();
 		}
 	}
 };
