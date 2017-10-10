@@ -26,31 +26,6 @@ var globalStateData = {
 	tempSequence : []
 };
 
-var handlers = {
-	tap: function(box) {
-		simonSays.illumeBox(box);
-		// console.log(box.toString(),simonSays.sequence[globalStateData.depthInSequence]);
-		if (tempSequence.length > 0){
-			if (box.toString() === simonSays.sequence[globalStateData.depthInSequence]) {
-				console.log("MATCH!!!!");
-				simonSays.growSequence();
-				simonSays.illumeBox()
-				globalStateData.depthInSequence++;
-			} else {
-				console.log("FAIL!!!!!");
-				alert("You Lose");
-				document.getElementsByTagName("body")[0].style.backgroundColor = "red";
-			}
-		} else {
-			computerTurn = false;
-			tempSequence = simonSays.sequence;
-			simonSays.playSequence();
-		}
-	}
-};
-/// THIS MUST OCCUR AT SOME POINT
-simonSays.playSequence(simonSays.sequence);
-
 var simonSays = {
 	sequence: [],
 	boxColors:
@@ -87,6 +62,32 @@ var simonSays = {
 		});
 	}
 };
+
+var handlers = {
+	tap: function(box) {
+		simonSays.illumeBox(box);
+		// console.log(box.toString(),simonSays.sequence[globalStateData.depthInSequence]);
+		if (tempSequence.length > 0){
+			if (box.toString() === simonSays.sequence[globalStateData.depthInSequence]) {
+				console.log("MATCH!!!!");
+				simonSays.growSequence();
+				simonSays.illumeBox()
+				globalStateData.depthInSequence++;
+			} else {
+				console.log("FAIL!!!!!");
+				alert("You Lose");
+				document.getElementsByTagName("body")[0].style.backgroundColor = "red";
+			}
+		} else {
+			computerTurn = false;
+			tempSequence = simonSays.sequence;
+			simonSays.playSequence();
+		}
+	}
+};
+/// THIS MUST OCCUR AT SOME POINT
+simonSays.playSequence(simonSays.sequence);
+
 
 document.addEventListener("DOMContentLoaded", function(event) {
 	simonSays.growSequence();
