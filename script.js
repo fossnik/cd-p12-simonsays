@@ -22,8 +22,7 @@ beep4.appendChild(src4);
 
 var globalStateData = {
 	depthInSequence : 0,
-	computerTurn : true,
-	tempSequence : []
+	humanSequence : []
 };
 
 var simonSays = {
@@ -35,6 +34,7 @@ var simonSays = {
 	},
 	growSequence: function() {
 		this.sequence.push(['a','b','c','d'][Math.floor(Math.random()*4)]);
+		this.playSequence();
 	},
 	playSequence: function() {
 		this.sequence.forEach(function(box, timeout) {
@@ -45,17 +45,14 @@ var simonSays = {
 	illumeBox: function(box, timeout) {
 		setTimeout(function(){
 			switch(box) {
-				case 'a':
-				beep1.play(); break;
-				case 'b':
-				beep2.play(); break;
-				case 'c':
-				beep3.play();	break;
-				case 'd':
-				beep4.play();	break;
+				case 'a':	beep1.play(); break;
+				case 'b':	beep2.play(); break;
+				case 'c':	beep3.play();	break;
+				case 'd':	beep4.play();	break;
 			}
 			document.getElementById(box).style.backgroundColor = simonSays.boxColors[1][box];
 		}, timeout * 800);
+
 		setTimeout(function(){
 			document.getElementById(box).style.backgroundColor = simonSays.boxColors[0][box];
 		}, timeout * 800 + 300);
@@ -65,27 +62,26 @@ var simonSays = {
 var handlers = {
 	tap: function(box) {
 		simonSays.illumeBox(box);
-		globalStateData.tempSequence.push(box);
-		// if (tempSequence.length > 0){
-			if (box.toString() === simonSays.sequence[globalStateData.depthInSequence]) {
+		globalStateData.humanSequence.push(box);
+		if (globalStateData.humanSequence.length <= simonSays.sequence.length) {
+			if (box === simonSays.sequence[globalStateData.depthInSequence]) {
 				console.log("MATCH!!!!");
 				simonSays.growSequence();
-				simonSays.playSequence(simonSays.sequence);
 				globalStateData.depthInSequence++;
 			} else {
 				console.log("FAIL!!!!!");
 				document.getElementsByTagName("body")[0].style.backgroundColor = "red";
 				alert("You Lose");
 			}
-		// } else {
-		// 	computerTurn = false;
-		// 	tempSequence = simonSays.sequence;
-		// 	simonSays.playSequence();
-		// }
+		} else {
+			// human turn completed - proceed to next iteration.
+			globalStateData.depthInSequence = 0;
+			globalStateData.humanSequence = [];
+			simonSays.growSequence();
+		}
 	}
 };
 
 document.addEventListener("DOMContentLoaded", function(event) {
 	simonSays.growSequence();
-	simonSays.playSequence(simonSays.sequence);
 });
