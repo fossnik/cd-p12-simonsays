@@ -20,9 +20,8 @@ beep2.appendChild(src2);
 beep3.appendChild(src3);
 beep4.appendChild(src4);
 
-var globalStateData = {
+var stateData = {
 	depthInSequence : 0,
-	humanSequence : []
 };
 
 var simonSays = {
@@ -56,27 +55,30 @@ var simonSays = {
 		setTimeout(function(){
 			document.getElementById(box).style.backgroundColor = simonSays.boxColors[0][box];
 		}, timeout * 800 + 300);
+	},
+	testBox: function(box) {
+		if (box === simonSays.sequence[stateData.depthInSequence]) {
+			console.log("MATCH!!!!");
+			simonSays.growSequence();
+		} else {
+			console.log("FAIL!!!!!");
+			document.getElementsByTagName("body")[0].style.backgroundColor = "red";
+			alert("You Lose");
+		}
 	}
 };
 
 var handlers = {
 	tap: function(box) {
 		simonSays.illumeBox(box);
-		globalStateData.humanSequence.push(box);
-		if (globalStateData.humanSequence.length <= simonSays.sequence.length) {
-			if (box === simonSays.sequence[globalStateData.depthInSequence]) {
-				console.log("MATCH!!!!");
-				simonSays.growSequence();
-				globalStateData.depthInSequence++;
-			} else {
-				console.log("FAIL!!!!!");
-				document.getElementsByTagName("body")[0].style.backgroundColor = "red";
-				alert("You Lose");
-			}
-		} else {
+		if (stateData.depthInSequence < simonSays.sequence.length) {
+			simonSays.testBox(box);
+			stateData.depthInSequence++;
+		}
+		if (stateData.depthInSequence === simonSays.sequence.length) {
+			console.log("human turn completed - proceed to next iteration.")
 			// human turn completed - proceed to next iteration.
-			globalStateData.depthInSequence = 0;
-			globalStateData.humanSequence = [];
+			stateData.depthInSequence = 0;
 			simonSays.growSequence();
 		}
 	}
