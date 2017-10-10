@@ -49,7 +49,7 @@ var handlers = {
 	}
 };
 /// THIS MUST OCCUR AT SOME POINT
-simonSays.playSequence(simonSays.sequence)
+simonSays.playSequence(simonSays.sequence);
 
 var simonSays = {
 	sequence: [],
