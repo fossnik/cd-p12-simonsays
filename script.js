@@ -57,13 +57,17 @@ var simonSays = {
 		}, timeout * 800 + 300);
 	},
 	testBox: function(box) {
+		console.log("stateData.depthInSequence: ", stateData.depthInSequence)
+		console.log("simonSays.sequence.length: ", simonSays.sequence.length)
+		console.log("simonSays.sequence[",stateData.depthInSequence,"]: ", simonSays.sequence[stateData.depthInSequence])
+		console.log("tapped box: ", box)
+
 		if (box === simonSays.sequence[stateData.depthInSequence]) {
-			console.log("MATCH!!!!");
-			simonSays.growSequence();
+			stateData.depthInSequence++;
 		} else {
-			console.log("FAIL!!!!!");
 			document.getElementsByTagName("body")[0].style.backgroundColor = "red";
-			alert("You Lose");
+			console.log("You Lose\n\n\n");
+			// alert("You Lose");
 		}
 	}
 };
@@ -73,10 +77,8 @@ var handlers = {
 		simonSays.illumeBox(box);
 		if (stateData.depthInSequence < simonSays.sequence.length) {
 			simonSays.testBox(box);
-			stateData.depthInSequence++;
 		}
-		if (stateData.depthInSequence === simonSays.sequence.length) {
-			console.log("human turn completed - proceed to next iteration.")
+		if (stateData.depthInSequence >= simonSays.sequence.length) {
 			// human turn completed - proceed to next iteration.
 			stateData.depthInSequence = 0;
 			simonSays.growSequence();
