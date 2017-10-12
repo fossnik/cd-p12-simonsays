@@ -65,10 +65,11 @@ var simonSays = {
 	},
 	nextLevel: function() {
 		setTimeout(function(){
-			document.getElementById("successFooter").style.backgroundColor = "green";
+			document.getElementByClass
+			document.getElementById("success").style.backgroundColor = "green";
 		}, 500);
 		setTimeout(function(){
-			document.getElementById("successFooter").style.backgroundColor = "white";
+			document.getElementById("success").style.backgroundColor = "white";
 		}, 1500);
 
 		setTimeout(function(){
