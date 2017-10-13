@@ -69,11 +69,10 @@ var simonSays = {
 		}, 500);
 		setTimeout(function(){
 			document.getElementById("success").style.backgroundColor = "white";
-		}, 1500);
-
+		}, 1200);
 		setTimeout(function(){
 			simonSays.growSequence();
-		}, 2500);
+		}, 2000);
 		stateData.depthInSequence = 0;
 	}
 };
