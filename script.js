@@ -65,7 +65,6 @@ var simonSays = {
 	},
 	nextLevel: function() {
 		setTimeout(function(){
-			document.getElementByClass
 			document.getElementById("success").style.backgroundColor = "green";
 		}, 500);
 		setTimeout(function(){
