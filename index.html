@@ -4,13 +4,12 @@
 	<meta charset="UTF-8">
 	<title>Project #12 - Advanced FCC - Simon Says</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
-	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
 </head>
 
-<body class="jumbotron flex-container">
-	<div class="panel panel-primary">
-		<div class="panel-heading"><h1 id="panelHeader">※ Simone ※</h1></div>
-		<table class="table table-bordered" id="success">
+<body class="flex-container">
+	<div>
+		<h1>※ Simone ※</h1>
+		<table id="success">
 			<tr>
 				<td id="a" type="button" class="btn" onclick="handlers.tap('a')"></td>
 				<td id="b" type="button" class="btn" onclick="handlers.tap('b')"></td>
@@ -19,9 +18,7 @@
 				<td id="d" type="button" class="btn" onclick="handlers.tap('d')"></td>
 			</tr>
 		</table>
-		<div class="panel-footer">
-			<div><button class='btn btn-success'onclick='window.location.reload()'>START</button></div>
-		</div>
+		<button onclick='window.location.reload()'>START</button>
 	</div>
 </body>
 
